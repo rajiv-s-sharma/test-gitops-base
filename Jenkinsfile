@@ -20,6 +20,7 @@ pipeline {
             }
           }
           steps {
+            echo 'Stage 2'
           }
         }
     }

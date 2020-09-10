@@ -16,7 +16,7 @@ pipeline {
           when {
             allOf {
               branch 'master';
-              expression {SKIP_SECURITY.toBoolean()}
+              expression {params.SKIP_SECURITY}
             }
           }
           steps {

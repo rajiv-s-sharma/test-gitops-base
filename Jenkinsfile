@@ -26,10 +26,8 @@ pipeline {
         echo 'Stage 2'
         script {
           def gitBranchUrlWithCommitId = "https://${SOURCE_CODE_REPO}@${BRANCH_NAME}:${GIT_COMMIT}"
+          println gitBranchUrlWithCommitId
         }
-
-
-        echo "${gitBranchUrlWithCommitId}"
       }
     }
   }

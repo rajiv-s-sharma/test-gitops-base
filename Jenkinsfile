@@ -18,9 +18,10 @@ pipeline {
     stage('Generate Service Image Version') {
       steps {
         script {
-             String semanticVersion =  sh(script:'''cat gradle.properties | egrep "componentVersion=" | sed "s/componentVersion=\\(.*\\)/\\1/"''', returnStdout:true).trim()
-             shortCommitID = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
-             serviceImageVersion = "${semanticVersion}-${shortCommitID}-${env.BUILD_NUMBER}"
+             def semanticVersion =  sh(script:'''cat gradle.properties | egrep "componentVersion=" | sed "s/componentVersion=\\(.*\\)/\\1/"''', returnStdout:true).trim()
+             def shortCommitID = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
+             def timestamp = new Date().format('yyyyMMddHHmmss', TimeZone.getTimeZone('UTC'))
+             def serviceImageVersion = "${semanticVersion}-${timestamp}-${shortCommitID}-${env.BUILD_NUMBER}"
              echo "The Service Image Tag is ${serviceImageVersion}"
         }
       }

@@ -22,7 +22,6 @@ pipeline {
              shortCommitID = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
              serviceImageVersion = "${semanticVersion}-${shortCommitID}-${env.BUILD_NUMBER}"
              echo "The Service Image Tag is ${serviceImageVersion}"
-          }
         }
       }
     }

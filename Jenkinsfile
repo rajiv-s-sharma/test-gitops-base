@@ -11,6 +11,9 @@ pipeline {
   agent any
   stages {
     stage('Stage 1') {
+      when {
+        branch pattern: RELEASE_BRANCH_PATTERN, comparator: "REGEXP"
+      }
       environment {
         BASE_TAG = "${RELEASE_VERSION}"
       }

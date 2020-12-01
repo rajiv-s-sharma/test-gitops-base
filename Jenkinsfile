@@ -15,7 +15,7 @@ pipeline {
         echo "Release version = ${RELEASE_VERSION}"
         echo 'Hello world!'
         dir('k8s-configuration') {
-          BASE_TAG = "${RELEASE_VERSION}"
+          BASE_TAG = "v${RELEASE_VERSION}"
           sh 'ls -l'
           echo "Base Tag: ${BASE_TAG}"
         }

@@ -3,7 +3,7 @@ pipeline {
     SOURCE_CODE_REPO = 'https://github.wdf.sap.corp/sfsf-platform-core/uxrhp-cardsvc.git'
     SEMANTIC_VERSION = sh(script:'''cat gradle.properties | egrep "componentVersion=" | sed "s/componentVersion=\\(.*\\)/\\1/"''', returnStdout:true).trim()
     RELEASE_VERSION = "${SEMANTIC_VERSION}-${(new Date()).format('yyyyMMddHHmmss', TimeZone.getTimeZone('UTC'))}-${GIT_COMMIT.take(7)}-${env.BUILD_NUMBER}"
-
+    RELEASE_BRANCH_PATTERN = "^(master|b\\d{4}|)"
   }
   parameters {
     booleanParam(name: 'SKIP_SECURITY', defaultValue: false, description: 'Skip Security Gates')
